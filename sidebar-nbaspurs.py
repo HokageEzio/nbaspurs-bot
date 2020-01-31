@@ -349,7 +349,7 @@ def games_inactive_update_sidebar_first_run(sidebarBody, teamDict, endTime, star
     players_stats_markup = get_players_stats()
     schedule_markup = get_schedule(teamDict)
     update_sidebar(sidebarBody, standing_markup, players_stats_markup, schedule_markup, rulesAndBanners)
-    sched.add_job(game_inactive_update_sidebar_in_interval, 'interval', hours=24, max_instances=15, start_date=endTime, end_date=startTimeNextGame, args=[sidebarBody, standing_markup, players_stats_markup, schedule_markup, rulesAndBanners])
+    sched.add_job(game_inactive_update_sidebar_in_interval, 'interval', hours=24, max_instances=15, start_date=endTime, end_date=startTimeNextGame, args=[players_stats_markup, schedule_markup, rulesAndBanners])
 
 def game_inactive_update_sidebar_in_interval(sidebarBody, schedule_markup, rulesAndBanners):
     """
@@ -982,5 +982,5 @@ def process_austin_game_thread():
 process_sidebar()
 processGameThread()
 processPostGameThread()
-process_austin_game_thread()
+#process_austin_game_thread()
 sched.start()
